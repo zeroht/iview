@@ -69,7 +69,7 @@
                         :columns-width="columnsWidth"
                         :data="rebuildData"></table-head>
                 </div>
-                <div :class="[prefixCls + '-fixed-body']" :style="fixedBodyStyle" ref="fixedRightBody">
+                <div :class="[prefixCls + '-fixed-body']" :style="fixedRightBodyStyle" ref="fixedRightBody" @scroll="handleFixedRightBodyScroll">
                     <table-body
                         fixed="right"
                         :prefix-cls="prefixCls"
@@ -307,6 +307,11 @@
                 }
                 return style;
             },
+            fixedRightBodyStyle(){
+                let style = this.fixedBodyStyle;
+                style['overflow-y'] = 'auto';
+                return style;
+            },
             leftFixedColumns () {
                 let left = [];
                 let other = [];
@@ -520,6 +525,11 @@
                 if (this.showHeader) this.$refs.header.scrollLeft = event.target.scrollLeft;
                 if (this.isLeftFixed) this.$refs.fixedBody.scrollTop = event.target.scrollTop;
                 if (this.isRightFixed) this.$refs.fixedRightBody.scrollTop = event.target.scrollTop;
+                this.hideColumnFilter();
+            },
+            // add by zeroht
+            handleFixedRightBodyScroll(event){
+                this.$refs.body.scrollTop = event.target.scrollTop;
                 this.hideColumnFilter();
             },
             handleMouseWheel (event) {

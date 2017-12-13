@@ -13,7 +13,12 @@
                         </template>
                         <template v-else-if="column.type === 'selection'"><Checkbox :value="isSelectAll" @on-change="selectAll"></Checkbox></template>
                         <template v-else>
-                            <span v-if="!column.renderHeader" @click="handleSortByHead(index)">{{ column.title || '#' }}</span>
+                            <span style="cursor: pointer;" v-if="!column.renderHeader" @click="handleSortByHead(index)">
+                                {{ column.title || '#' }}
+                                <Tooltip v-if="column.tip" :content="column.tip" :placement="column.tipPlacement ? column.tipPlacement : 'top'">
+                                    <Icon type="help-circled" style="cursor:pointer;"></Icon>
+                                </Tooltip>
+                            </span>
                             <render-header v-else :render="column.renderHeader" :column="column" :index="index"></render-header>
                             <span :class="[prefixCls + '-sort']" v-if="column.sortable">
                                 <i class="ivu-icon ivu-icon-arrow-up-b" :class="{on: column._sortType === 'asc'}" @click="handleSort(index, 'asc')"></i>
@@ -134,7 +139,8 @@
             },
             handleSort (index, type) {
                 if (this.columns[index]._sortType === type) {
-                    type = 'normal';
+                    //type = 'normal';
+                    return;
                 }
                 this.$parent.handleSort(index, type);
             },
@@ -142,13 +148,18 @@
                 const column = this.columns[index];
                 if (column.sortable) {
                     const type = column._sortType;
-                    if (type === 'normal') {
+                    if (type === 'desc'){
+                        this.handleSort(index, 'asc');
+                    }else {
+                        this.handleSort(index, 'desc');
+                    }
+                    /*if (type === 'normal') {
                         this.handleSort(index, 'asc');
                     } else if (type === 'asc') {
                         this.handleSort(index, 'desc');
                     } else {
                         this.handleSort(index, 'normal');
-                    }
+                    }*/
                 }
             },
             handleFilter (index) {
