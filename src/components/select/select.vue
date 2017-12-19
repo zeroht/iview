@@ -186,9 +186,10 @@
                 };
             },
             selectionCls () {
-                return {
+                return [`${prefixCls}-selection`];
+                /*return {
                     [`${prefixCls}-selection`]: !this.autoComplete
-                };
+                };*/
             },
             showPlaceholder () {
                 let status = false;
@@ -488,7 +489,8 @@
                 this.hideMenu();
             },
             handleKeydown (e) {
-                if (this.visible) {
+                //if (this.visible) {
+                if (this.dropVisible){
                     const keyCode = e.keyCode;
                     // Esc slide-up
                     if (keyCode === 27) {
@@ -512,6 +514,9 @@
                         this.findChild((child) => {
                             if (child.isFocus) {
                                 child.select();
+                                if (this.autoComplete){
+                                    this.$refs.input.blur();
+                                }
                             }
                         });
                     }
@@ -572,6 +577,7 @@
                 this.isInputFocus = true;
             },
             handleBlur () {
+                this.$emit('on-blur');
                 this.isInputFocus = false;
                 setTimeout(() => {
                     if (this.autoComplete) return;

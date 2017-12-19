@@ -45,6 +45,9 @@
             },
             render: {
                 type: Function
+            },
+            stopPropagateUp:{
+                default:false
             }
         },
         data () {
@@ -96,6 +99,10 @@
                 return flatTree;
             },
             updateTreeUp(nodeKey){
+                if (this.stopPropagateUp){
+                    return;
+                }
+
                 const parentKey = this.flatState[nodeKey].parent;
                 if (typeof parentKey == 'undefined') return;
 

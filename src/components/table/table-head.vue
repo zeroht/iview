@@ -13,7 +13,7 @@
                         </template>
                         <template v-else-if="column.type === 'selection'"><Checkbox :value="isSelectAll" @on-change="selectAll"></Checkbox></template>
                         <template v-else>
-                            <span style="cursor: pointer;" v-if="!column.renderHeader" @click="handleSortByHead(index)">
+                            <span v-if="!column.renderHeader" @click="handleSortByHead(index)">
                                 {{ column.title || '#' }}
                                 <Tooltip v-if="column.tip" :content="column.tip" :placement="column.tipPlacement ? column.tipPlacement : 'top'">
                                     <Icon type="help-circled" style="cursor:pointer;"></Icon>

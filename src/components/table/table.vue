@@ -69,7 +69,7 @@
                         :columns-width="columnsWidth"
                         :data="rebuildData"></table-head>
                 </div>
-                <div :class="[prefixCls + '-fixed-body']" :style="fixedRightBodyStyle" ref="fixedRightBody" @scroll="handleFixedRightBodyScroll">
+                <div :class="[prefixCls + '-fixed-body']" :style="fixedBodyStyle" ref="fixedRightBody">
                     <table-body
                         fixed="right"
                         :prefix-cls="prefixCls"
