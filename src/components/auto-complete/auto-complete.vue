@@ -123,10 +123,10 @@
             currentValue (val) {
                 this.$refs.select.query = val;
                 this.$emit('input', val);
-                if (this.disableEmitChange) {
+                /*if (this.disableEmitChange) {
                     this.disableEmitChange = false;
                     return;
-                }
+                }*/
                 this.$emit('on-change', val);
                 this.dispatch('FormItem', 'on-form-change', val);
             }
@@ -143,9 +143,12 @@
             },
             handleFocus () {
                 this.$refs.select.visible = true;
+                this.$emit('on-blur');
             },
             handleBlur () {
-                this.$refs.select.visible = false;
+                setTimeout(() => {
+                        this.$refs.select.visible = false;
+                }, 300);
             },
             handleClear () {
                 if (!this.clearable) return;

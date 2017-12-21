@@ -186,10 +186,9 @@
                 };
             },
             selectionCls () {
-                return [`${prefixCls}-selection`];
-                /*return {
+                return {
                     [`${prefixCls}-selection`]: !this.autoComplete
-                };*/
+                };
             },
             showPlaceholder () {
                 let status = false;
@@ -489,8 +488,7 @@
                 this.hideMenu();
             },
             handleKeydown (e) {
-                //if (this.visible) {
-                if (this.dropVisible){
+                if (this.visible) {
                     const keyCode = e.keyCode;
                     // Esc slide-up
                     if (keyCode === 27) {
@@ -514,9 +512,6 @@
                         this.findChild((child) => {
                             if (child.isFocus) {
                                 child.select();
-                                if (this.autoComplete){
-                                    this.$refs.input.blur();
-                                }
                             }
                         });
                     }
