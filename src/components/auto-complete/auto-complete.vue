@@ -89,6 +89,10 @@
             },
             elementId: {
                 type: String
+            },
+            returnObject:{
+                type: Boolean,
+                default: false
             }
         },
         data () {
@@ -136,8 +140,11 @@
                 this.$emit('on-search', query);
             },
             handleChange (val) {
-                this.currentValue = val;
-                this.$refs.select.model = val;
+                if (!this.returnObject){
+                    this.currentValue = val;
+                    this.$refs.select.model = val;
+                }
+
                 this.$refs.input.blur();
                 this.$emit('on-select', val);
             },
