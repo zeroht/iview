@@ -42,7 +42,7 @@
                 ];
             },
             finalCount () {
-                return parseInt(this.count) >= parseInt(this.overflowCount) ? `${this.overflowCount}+` : this.count;
+                return parseInt(this.count) > parseInt(this.overflowCount) ? `${this.overflowCount}+` : this.count;
             },
             badge () {
                 let status = false;
