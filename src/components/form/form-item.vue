@@ -1,5 +1,5 @@
 <template>
-    <div :class="classes">
+    <div :class="classes" v-show="visible">
         <label :class="[prefixCls + '-label']" :for="labelFor" :style="labelStyles" v-if="label || $slots.label"><slot name="label">{{ label }}</slot></label>
         <div :class="[prefixCls + '-content']" :style="contentStyles">
             <slot></slot>
@@ -71,6 +71,10 @@
             },
             labelFor: {
                 type: String
+            },
+            visible: {
+                type: Boolean,
+                default: true
             }
         },
         data () {
@@ -157,7 +161,7 @@
             },
             validate(trigger, callback = function () {}) {
                 const rules = this.getFilteredRule(trigger);
-                if (!rules || rules.length === 0) {
+                if (!this.visible || !rules || rules.length === 0) {
                     callback();
                     return true;
                 }
