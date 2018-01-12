@@ -94,6 +94,11 @@
             },
             validateStatus (val) {
                 this.validateState = val;
+            },
+            visible(val){
+                if (!val){
+                    this.resetField();
+                }
             }
         },
         computed: {
