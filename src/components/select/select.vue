@@ -161,7 +161,8 @@
                 slotChangeDuration: false,    // if slot change duration and in multiple, set true and after slot change, set false
                 model: this.value,
                 currentLabel: this.label,
-                isInputFocus:false
+                isInputFocus:false,
+                delayShowDropDown:false // 修复连续点击，transfer 模式下 dropdown飘走的bug
             };
         },
         computed: {
@@ -254,7 +255,7 @@
 
                 if (this.autoComplete && !options.length) status = false;
 
-                return (this.visible || this.isInputFocus) && status;
+                return this.visible && status;
             },
             notFoundShow () {
                 const options = this.$slots.default || [];
@@ -266,7 +267,17 @@
                 if (this.disabled || this.autoComplete) {
                     return false;
                 }
-                this.visible = !this.visible;
+
+                if (this.transfer && !this.delayShowDropDown){
+                    // 修复连续点击，transfer 模式下 dropdown飘走的bug 2018/1/30 @zeroht
+                    this.delayShowDropDown = true;
+                    this.visible = !this.visible;
+                    setTimeout(() => {
+                        this.delayShowDropDown = false;
+                    }, 300)
+                }else if(!this.transfer) {
+                    this.visible = !this.visible;
+                }
             },
             hideMenu () {
                 this.visible = false;

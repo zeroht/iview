@@ -41,6 +41,15 @@
                 type: [String, Number]
             }
         },
+        watch:{
+            checked:{
+                handler:function (val, oldVal) {
+                    this.isChecked = val;
+                },
+                deep:true,
+                immediate:true
+            }
+        }, // 2017/1/25 @zeroht
         data () {
             return {
                 isChecked: this.checked
