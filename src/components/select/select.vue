@@ -40,8 +40,12 @@
                 ref="dropdown"
                 :data-transfer="transfer"
                 v-transfer-dom>
-                <ul v-show="notFoundShow" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul>
-                <ul v-show="(!notFound && !remote) || (remote && !loading && !notFound)" :class="[prefixCls + '-dropdown-list']"><slot></slot></ul>
+                <!--ul v-show="notFoundShow" :class="[prefixCls + '-not-found']"><li>{{ localeNotFoundText }}</li></ul-->
+                <ul v-show="(!notFound && !remote) || (remote && !loading && !notFound)" :class="[prefixCls + '-dropdown-list']">
+                    <slot>
+                        <li :class="[prefixCls + '-not-found']" v-if="remote">{{ localeNotFoundText }}</li>
+                    </slot>
+                </ul>
                 <ul v-show="loading" :class="[prefixCls + '-loading']">{{ localeLoadingText }}</ul>
             </Drop>
         </transition>
