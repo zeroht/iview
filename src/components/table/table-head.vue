@@ -15,7 +15,7 @@
                         <template v-else>
                             <span v-if="!column.renderHeader" @click="handleSortByHead(index)">
                                 {{ column.title || '#' }}
-                                <Tooltip v-if="column.tip" :content="column.tip" :placement="column.tipPlacement ? column.tipPlacement : 'top'">
+                                <Tooltip v-if="column.tip" :content="column.tip" :placement="column.tipPlacement ? column.tipPlacement : 'top'" transfer>
                                     <Icon type="help-circled" style="cursor:pointer;"></Icon>
                                 </Tooltip>
                             </span>

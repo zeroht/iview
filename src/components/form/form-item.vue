@@ -75,6 +75,9 @@
             visible: {
                 type: Boolean,
                 default: true
+            },
+            className:{
+                default: ""
             }
         },
         data () {
@@ -103,7 +106,7 @@
         },
         computed: {
             classes () {
-                return [
+                let _classes = [
                     `${prefixCls}`,
                     {
                         [`${prefixCls}-required`]: this.required || this.isRequired,
@@ -111,6 +114,12 @@
                         [`${prefixCls}-validating`]: this.validateState === 'validating'
                     }
                 ];
+
+                if (this.className){
+                    _classes.push(this.className)
+                }
+
+                return _classes;
             },
             form() {
                 let parent = this.$parent;
