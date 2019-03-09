@@ -60,7 +60,8 @@
             },
             maskClosable: {
                 type: Boolean,
-                default: true
+                default: false      //true modify by zeroht
+                //default: true
             },
             title: {
                 type: String
