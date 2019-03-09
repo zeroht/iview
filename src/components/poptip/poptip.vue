@@ -28,7 +28,7 @@
                     <div :class="[prefixCls + '-inner']" v-if="confirm">
                         <div :class="[prefixCls + '-body']">
                             <i class="ivu-icon ivu-icon-ios-help-circle"></i>
-                            <div :class="[prefixCls + '-body-message']"><slot name="title">{{ title }}</slot></div>
+                            <div :class="[prefixCls + '-body-message']"><slot name="title"><div v-html="title"></div></slot></div>
                         </div>
                         <div :class="[prefixCls + '-footer']">
                             <i-button type="text" size="small" @click.native="cancel">{{ localeCancelText }}</i-button>
@@ -36,9 +36,9 @@
                         </div>
                     </div>
                     <div :class="[prefixCls + '-inner']" v-if="!confirm">
-                        <div :class="[prefixCls + '-title']" :style="contentPaddingStyle" v-if="showTitle" ref="title"><slot name="title"><div :class="[prefixCls + '-title-inner']">{{ title }}</div></slot></div>
+                        <div :class="[prefixCls + '-title']" :style="contentPaddingStyle" v-if="showTitle" ref="title"><slot name="title"><div :class="[prefixCls + '-title-inner']" v-html="title"></div></slot></div>
                         <div :class="[prefixCls + '-body']" :style="contentPaddingStyle">
-                            <div :class="contentClasses"><slot name="content"><div :class="[prefixCls + '-body-content-inner']">{{ content }}</div></slot></div>
+                            <div :class="contentClasses"><slot name="content"><div :class="[prefixCls + '-body-content-inner']" v-html="content"></div></slot></div>
                         </div>
                     </div>
                 </div>
