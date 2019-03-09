@@ -15,7 +15,7 @@
                 v-transfer-dom>
                 <div :class="[prefixCls + '-content']">
                     <div :class="[prefixCls + '-arrow']"></div>
-                    <div :class="innerClasses" :style="innerStyles"><slot name="content">{{ content }}</slot></div>
+                    <div :class="innerClasses" :style="innerStyles"><slot name="content"><div v-html="content"></div></slot></div>
                 </div>
             </div>
         </transition>
