@@ -95,6 +95,11 @@
             validateStatus (val) {
                 this.validateState = val;
             },
+            visible: function visible(val) {
+                if (!val) {
+                    this.resetField();
+                }
+            },
             rules (){
                 this.setRules();
             }
