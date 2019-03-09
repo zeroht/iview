@@ -120,7 +120,6 @@
                 default: false
             },
             zIndex: {
-                type: Number,
                 default: 1000
             },
             autoHide:{ // for close confirm @zeroht
@@ -160,7 +159,7 @@
             },
             wrapStyles () {
                 return {
-                    zIndex: this.modalIndex + this.zIndex
+                    zIndex: this.modalIndex + Number(this.zIndex)
                 };
             },
             maskClasses () {
