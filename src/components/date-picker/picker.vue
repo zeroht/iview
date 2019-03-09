@@ -578,7 +578,12 @@
                     if (e) e.stopPropagation();
                     this.handleClear();
                 } else if (!this.disabled) {
-                    this.handleFocus();
+                    // 修复this.visible = true时, 日历位置跳动错误的bug , add by zeroht
+                    if(this.visible){
+                        this.handleBlur();
+                    } else {
+                        this.handleFocus();
+                    }
                 }
             },
             handleClear () {
