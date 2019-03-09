@@ -19,7 +19,7 @@
         props: {
             type: {
                 validator (value) {
-                    return oneOf(value, ['default', 'primary', 'dashed', 'text', 'info', 'success', 'warning', 'error']);
+                    return oneOf(value, ['default', 'ghost', 'primary', 'dashed', 'text', 'info', 'success', 'warning', 'error']);
                 },
                 default: 'default'
             },
@@ -68,9 +68,12 @@
         },
         computed: {
             classes () {
+                // 兼容2.x的ghost 类型 @zeroht
+                var _type = (this.type == "ghost") ? "default" : this.type;
+
                 return [
                     `${prefixCls}`,
-                    `${prefixCls}-${this.type}`,
+                    `${prefixCls}-${_type}`,
                     {
                         [`${prefixCls}-long`]: this.long,
                         [`${prefixCls}-${this.shape}`]: !!this.shape,
