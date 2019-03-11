@@ -184,6 +184,10 @@
             filterMethod: {
                 type: Function
             },
+            remote: {       // 兼容旧版本的用法 @zeroht
+                type: Boolean,
+                default: false
+            },
             remoteMethod: {
                 type: Function
             },
@@ -406,9 +410,9 @@
             selectTabindex(){
                 return this.disabled || this.filterable ? -1 : 0;
             },
-            remote(){
+            /*remote(){
                 return typeof this.remoteMethod === 'function';
-            }
+            }*/
         },
         methods: {
             setQuery(query){ // PUBLIC API
