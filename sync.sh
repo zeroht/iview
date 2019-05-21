@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 #npm run dist
-VERSION=3.3.0
+VERSION=3.4.2
 PRODUCT=Alfred
 cp dist/iview.min.js ../../../gsu/thu/Alfred/src/libs/js/iview${VERSION}.min.js
 cp dist/iview.js ../../../gsu/thu/Alfred/src/libs/js/iview${VERSION}.js
