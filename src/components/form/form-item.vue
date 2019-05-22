@@ -101,11 +101,11 @@
             validateStatus (val) {
                 this.validateState = val;
             },
-            visible: function visible(val) {
+            /*visible: function visible(val) { // remove by zeroht
                 if (!val) {
                     this.resetField();
                 }
-            },
+            },*/
             rules (){
                 this.setRules();
             }
@@ -135,16 +135,19 @@
             //    }
             //    return parent;
             // },
-            fieldValue () {
-                const model = this.form.model;
-                if (!model || !this.prop) { return; }
+            fieldValue: {
+                cache: false,// edit by zeroht,
+                get() {
+                    const model = this.form.model;
+                    if (!model || !this.prop) { return; }
 
-                let path = this.prop;
-                if (path.indexOf(':') !== -1) {
-                    path = path.replace(/:/, '.');
+                    let path = this.prop;
+                    if (path.indexOf(':') !== -1) {
+                        path = path.replace(/:/, '.');
+                    }
+
+                    return getPropByPath(model, path).v;
                 }
-
-                return getPropByPath(model, path).v;
             },
             labelStyles () {
                 let style = {};
