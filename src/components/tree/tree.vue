@@ -63,7 +63,12 @@
             render: {
                 type: Function
             },
-
+            stopPropagateUp:{
+                default:false
+            },
+            stopPropagateDown:{
+                default:false
+            }
         },
         data () {
             return {
@@ -115,6 +120,10 @@
                 return flatTree;
             },
             updateTreeUp(nodeKey){
+                if (this.stopPropagateUp){
+                    return;
+                }
+
                 const parentKey = this.flatState[nodeKey].parent;
                 if (typeof parentKey == 'undefined' || this.checkStrictly) return;
 
@@ -159,6 +168,10 @@
                 return this.flatState.filter(obj => (obj.node.checked || obj.node.indeterminate)).map(obj => obj.node);
             },
             updateTreeDown(node, changes = {}) {
+                if (this.stopPropagateDown){
+                    return;
+                }
+
                 if (this.checkStrictly) return;
 
                 for (let key in changes) {
