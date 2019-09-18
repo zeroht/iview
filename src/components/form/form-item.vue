@@ -199,9 +199,14 @@
                 return rules.filter(rule => !rule.trigger || rule.trigger.indexOf(trigger) !== -1);
             },
             validate(trigger, callback = function () {}) {
+                if (!this.visible){
+                    callback();
+                    return true;
+                }
+
                 let rules = this.getFilteredRule(trigger);
                 if (!rules || rules.length === 0) {
-                    if (!this.visible || !this.required) {
+                    if (!this.required) {
                         callback();
                         return true;
                     }else {
